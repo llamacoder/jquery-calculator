@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
   gExpression = "";
+  ERROR = "Error";
 
   // put the current expression on the screen
   function updateScreen() {
@@ -10,8 +11,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function processNumberOrOperator(event) {
     //  it is a number
-    gExpression += event.target.innerText;
-    updateScreen();
+    if (gExpression !== ERROR) {
+      gExpression += event.target.innerText;
+      updateScreen();
+    }
   }
 
   function processClear() {
@@ -20,9 +23,17 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function processEquals() {
+    if (gExpression === ERROR) {
+      return;
+    }
       gExpression = gExpression.replace("x", "*");
-      gExpression = gExpression.replace("\u00F7", "/"); 
-      gExpression = eval(gExpression);
+      gExpression = gExpression.replace("\u00F7", "/");
+      try {
+        gExpression = eval(gExpression);
+      }
+      catch(err) {
+        gExpression = ERROR;
+      }
       updateScreen();
   }
 

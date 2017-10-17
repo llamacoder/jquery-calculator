@@ -30,6 +30,9 @@ document.addEventListener("DOMContentLoaded", function() {
       gExpression = gExpression.replace("\u00F7", "/");
       try {
         gExpression = eval(gExpression);
+        if (isFinite(gExpression) === false) {
+          gExpression = ERROR;
+        }
       }
       catch(err) {
         gExpression = ERROR;

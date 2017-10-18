@@ -11,10 +11,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function processNumberOrOperator(event) {
     //  it is a number
-    if (gExpression !== ERROR) {
       gExpression += event.target.innerText;
       updateScreen();
-    }
   }
 
   function processClear() {
@@ -26,8 +24,12 @@ document.addEventListener("DOMContentLoaded", function() {
     if (gExpression === ERROR) {
       return;
     }
-      gExpression = gExpression.replace("x", "*");
-      gExpression = gExpression.replace("\u00F7", "/");
+      while (gExpression.search('x') !== -1) {
+        gExpression = gExpression.replace("x", "*");
+      }
+      while (gExpression.search('\u00F7') !== -1) {
+        gExpression = gExpression.replace("\u00F7", "/");
+      }
       try {
         gExpression = eval(gExpression);
         if (isFinite(gExpression) === false) {

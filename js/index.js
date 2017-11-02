@@ -19,7 +19,7 @@ function processClear() {
 }
 
 function removeTimes(str) {
-  if (str === ERROR) {
+  if (str === undefined || str === ERROR) {
     return;
   }
   while (str.search('x') !== -1) {
@@ -29,7 +29,7 @@ function removeTimes(str) {
 }
 
 function removeDivide(str) {
-  if (str === ERROR) {
+  if (str === undefined || str === ERROR) {
     return;
   }
   while (str.search('\u00F7') !== -1) {
@@ -84,8 +84,3 @@ document.addEventListener("DOMContentLoaded", function() {
   addListenersToButtons();
 
 });
-
-module.exports = {
-  removeTimes: removeTimes,
-  removeDivide: removeDivide
-}

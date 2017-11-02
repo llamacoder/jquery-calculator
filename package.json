@@ -1,0 +1,14 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "main": "js/index.js",
+  "author": "Tracey",
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha test/test.js"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^3.5.0"
+  }
+}
